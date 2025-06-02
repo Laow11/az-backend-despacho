@@ -15,9 +15,9 @@ app.http('crear-orden', {
                     fecha, numero, yacimiento, destino, cuit, domicilio,
                     transportista, cuit_transporte, domicilio_transporte,
                     telefono, chofer, dni_chofer, dominio_tractor, dominio_semi,
-                    capacidad, calibracion, venc_calibracion, vtv, seguro, empresa
+                    capacidad, calibracion, venc_calibracion, vtv, seguro, empresa, porcuentayorden
                 ) VALUES (
-                    $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20
+                    $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21
                 ) RETURNING *;
             `;
 
@@ -41,7 +41,8 @@ app.http('crear-orden', {
                 body.camion.venc_calibracion || null,
                 body.camion.vtv || null,
                 body.camion.seguro || null,  // $19
-                body.empresa || null  // $20
+                body.empresa || null,  // $20
+                body.porcuentayorden || null // $21
             ];
 
             const result = await pool.query(query, values);
